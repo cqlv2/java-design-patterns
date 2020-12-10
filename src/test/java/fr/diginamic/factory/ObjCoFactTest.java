@@ -15,7 +15,9 @@ public class ObjCoFactTest {
 		
 		ObjCoFact oc=new ObjCoFact();
 		ObjetConnecte phone= oc.getObjet(EnumObjetConnecte.TELEPHONE, 1000);
-		assertEquals(EnumObjetConnecte.TABLETTE, phone.toString());
+		assertEquals("c'est un Smartphone avec 1000 de limiteVolts", phone.toString());
 	}
 
 }
+
+
