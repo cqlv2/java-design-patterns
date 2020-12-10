@@ -1,24 +1,24 @@
 package fr.diginamic.tp_grasps;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import fr.diginamic.tp_grasps.beans.Client;
 import fr.diginamic.tp_grasps.beans.Reservation;
 import fr.diginamic.tp_grasps.beans.TypeReservation;
-import fr.diginamic.tp_grasps.daos.ClientDao;
-import fr.diginamic.tp_grasps.daos.TypeReservationDao;
+import fr.diginamic.tp_grasps.services.ClientService;
+import fr.diginamic.tp_grasps.services.ReservationService;
+import fr.diginamic.tp_grasps.services.iClientService;
+import fr.diginamic.tp_grasps.services.iReservationService;
+import fr.diginamic.tp_grasps.utils.DateUtils;
 
 /** Controlleur qui prend en charge la gestion des réservations client
  * @author RichardBONNAMY
  *
  */
-public class ReservationController implements dateUtil{
+public class ReservationController{
 	
-	private ClientService clientServ = new ClientService();
-	private ReservationService reservServ = new ReservationService();
-	
-	
+	private iClientService clientServ = new ClientService();
+	private iReservationService reservServ = new ReservationService();	
 	
 	
 	/** Méthode qui créée une réservation pour un client à partir des informations transmises
@@ -34,7 +34,8 @@ public class ReservationController implements dateUtil{
 		int nbPlaces = params.getNbPlaces();
 		
 		// 2) Conversion de la date de réservation en LocalDateTime
-		LocalDateTime dateReservation = toDate(dateReservationStr);
+		LocalDateTime dateReservation = DateUtils.toDate(dateReservationStr);
+
 		
 		// 3) Extraction de la base de données des informations client
 		Client client = clientServ.getClient(identifiantClient);
@@ -54,10 +55,6 @@ public class ReservationController implements dateUtil{
 		//    - de la réduction qui s'applique si le client est premium ou non
 		
 			reservation.setTotal(reservServ.calculTarif(nbPlaces, client, reservation, type));
-		
 		return reservation;
 	}
-
-
-
 }
