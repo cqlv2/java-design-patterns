@@ -13,37 +13,33 @@ public class ZooBuilderTest {
 
 	@Test
 	public void test() {
-		ZooBuilder zb=new ZooBuilder("test");
-		Zoo zooA=null;
+		ZooBuilder zb = new ZooBuilder("test");
+		Zoo zooA = null;
 
-		
 		try {
-			zooA=zb.appendZone("zoneA", 10).appendAnimal("zoneA", new Lion()).get();
+			zooA = zb.appendZone("zoneA", 10).appendAnimal("zoneA", new Lion()).get();
 		} catch (ZoneException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		assertEquals("test", zooA.getNom());
 		assertEquals(1, zooA.getZones().size());
 		assertEquals(1, zooA.getZones().get(0).getAnimal().size());
 
 	}
-	
-	@Test(expected=Exception.class)
-	public void test2() throws ZoneException {
-		ZooBuilder zb=new ZooBuilder("test2");
-		Zoo zooB=null;
 
-		
-		
-			zooB=zb.appendZone("zoneB", 1).appendAnimal("zoneB", new Lion()).appendAnimal("zoneB", new Lion()).get();
-		
-		
+	@Test(expected = Exception.class)
+	public void test2() throws ZoneException {
+		ZooBuilder zb = new ZooBuilder("test2");
+		Zoo zooB = null;
+		zooB = zb.appendZone("zoneB", 1).appendAnimal("zoneB", new Lion()).appendAnimal("zoneB", new Lion()).get();
+
 		assertEquals("test2", zooB.getNom());
 		assertEquals(1, zooB.getZones().size());
 		assertEquals(1, zooB.getZones().get(0).getAnimal().size());
 
 	}
-
+	
+	
 }

@@ -1,5 +1,7 @@
 package fr.diginamic.builder;
 
+import java.util.Optional;
+
 public class ZooBuilder {
 
 	private Zoo zoo;
@@ -14,18 +16,17 @@ public class ZooBuilder {
 	}
 	//appendAnimal
 	public ZooBuilder appendAnimal(String zone, Animal animal) throws ZoneException {
-			
-		for (Zone z : zoo.getZones()) {
-			if(z.getNom().equals(zone)) {
-				if(z.getCapacite()>z.getAnimal().size()) {
-					z.getAnimal().add(animal);
-				}else {
-					throw new ZoneException("plus de place !");
-				}
+		Optional<Zone> aze = zoo.getZones().stream().filter(z->z.getNom().equals(zone)).findFirst();
+		if(aze.isPresent()) {
+			if(aze.get().getCapacite()>aze.get().getAnimal().size()) {
+				aze.get().getAnimal().add(animal);
 			}else {
-				throw new ZoneException("zone introuvable");
+				throw new ZoneException("plus de place !");
 			}
+		}else {
+			throw new ZoneException("zone introuvable");
 		}
+
 		return this;
 	}
 	
