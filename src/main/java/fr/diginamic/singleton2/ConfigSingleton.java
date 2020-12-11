@@ -9,7 +9,6 @@ public class ConfigSingleton {
 	String pass;
 
 	private ConfigSingleton() {
-
 		ResourceBundle configuration = ResourceBundle.getBundle("configuration");
 		this.mysql = configuration.getString("db.url");
 		this.user = configuration.getString("db.user");
