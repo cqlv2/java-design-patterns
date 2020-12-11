@@ -18,7 +18,14 @@ public class Service implements Ielement {
 
 	@Override
 	public double calculerSalaire() {
-		return 0;
+		
+		double total=0;
+		for (Ielement e : iElements) {
+			total+=e.calculerSalaire();
+		}
+		
+		
+		return total;
 		// calcule et retourne le salaire de tous les employés associés au service et
 		// sous-services associés.
 	}

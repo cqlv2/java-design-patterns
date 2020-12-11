@@ -30,17 +30,16 @@ public class TestComposite {
 	}
 
 	public static void recurse(Service serv, int pos) {
-		String prefix="|";
+		String prefix="";
 		for (int i = 0; i < pos; i++) {
-			prefix+="__|";
+			prefix+="|__";
 		}
-		
-		System.out.println(prefix+serv.getNom());
+		System.out.println(prefix+serv.getNom()+"(total frais : "+serv.calculerSalaire()+")");
 		
 		for (Ielement elm :serv.getiElements()) {
 			
 			if(elm.getClass().equals(Employe.class)) {
-				System.out.println(prefix+"__"+elm.toString());
+				System.out.println(prefix+"|__"+elm.toString());
 			}else {
 				recurse((Service)elm, pos+1);
 			}

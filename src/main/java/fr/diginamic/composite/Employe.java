@@ -22,8 +22,7 @@ public class Employe implements Ielement {
 
 	@Override
 	public double calculerSalaire() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.salaire;
 	}
 
 	public String getPoste() {
