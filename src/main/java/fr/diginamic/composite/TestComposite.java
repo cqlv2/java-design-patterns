@@ -9,11 +9,8 @@ public class TestComposite {
 		Service dsin=new Service("dsin");
 		Service bd =new Service("BigData");
 		Service jd = new Service("JavaDev");
-		dsin.getiElements().add(new Service("BigData"));
-		dsin.getiElements().add(new Service("JavaDev"));
-		
-		
-		
+		dsin.getiElements().add(bd);
+		dsin.getiElements().add(jd);
 		
 		dsin.getiElements().add(new Employe("Directeur", "raspey", "Cecile", 10000));
 		dsin.getiElements().add(new Employe("Architecte", "BECHKAR", "Bilel", 8000));
@@ -24,11 +21,31 @@ public class TestComposite {
 		jd.getiElements().add(new Employe("lead dev", "QWERTYT", "bob", 3500));
 		
 		
+
+		recurse(dsin, 0);
 		
-		System.out.println(dsin.getNom());
 		
 		
 		
 	}
 
+	public static void recurse(Service serv, int pos) {
+		String prefix="|";
+		for (int i = 0; i < pos; i++) {
+			prefix+="__|";
+		}
+		
+		System.out.println(prefix+serv.getNom());
+		
+		for (Ielement elm :serv.getiElements()) {
+			
+			if(elm.getClass().equals(Employe.class)) {
+				System.out.println(prefix+"__"+elm.toString());
+			}else {
+				recurse((Service)elm, pos+1);
+			}
+		}
+	}
+	
+	
 }

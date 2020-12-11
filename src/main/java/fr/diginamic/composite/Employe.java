@@ -58,4 +58,9 @@ public class Employe implements Ielement {
 		this.salaire = salaire;
 	}
 
+	@Override
+	public String toString() {
+		return "Employe [poste=" + poste + ", nom=" + nom + ", prenom=" + prenom + ", salaire=" + salaire + "]";
+	}
+
 }

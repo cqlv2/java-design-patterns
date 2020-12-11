@@ -38,6 +38,12 @@ public class Service implements Ielement {
 	public void setiElements(List<Ielement> iElements) {
 		this.iElements = iElements;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Service [nom=" + nom + "]";
+	}
 	
 	
 }
